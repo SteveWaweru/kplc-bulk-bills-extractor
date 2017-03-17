@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
+
+    <title>Bulk KPLC Bills Process</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename = 'css/cover.css')}}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="inner">
+            <h1 class="cover-heading">KPLC Bulk Bills Processor</h1>
+            <p class="lead">Simple program used to get accounts and bill amounts from kplc bills</p>
+
+          </div>
+          <div class="inner">
+            <div class="panel panel-default">
+              <!-- IMPORTANT:  FORM's enctype must be "multipart/form-data" -->
+<form method="post" action="/" enctype="multipart/form-data">
+  <input name="filesToUpload" id="filesToUpload" type="file" multiple="" onchange="makeFileList()" style="color: black"/>
+    <input type="submit" class="btn btn-primary" value="Submit Files">
+</form>
+                <div class="panel-body">
+                    <ul id="fileList" class="list-group" style="color: black">
+                        <li>No Files Selected</li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+
+          <!--<div class="mastfoot responsive">-->
+            <!--<div class="inner">-->
+              <!--<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript">
+		function makeFileList() {
+			var input = document.getElementById("filesToUpload");
+			var ul = document.getElementById("fileList");
+			while (ul.hasChildNodes()) {
+				ul.removeChild(ul.firstChild);
+			}
+			for (var i = 0; i < input.files.length; i++) {
+				var li = document.createElement("li");
+				li.className = 'list-group-item';
+				li.innerHTML = input.files[i].name;
+				ul.appendChild(li);
+			}
+			if(!ul.hasChildNodes()) {
+				var li = document.createElement("li");
+				li.className = 'list-group-item';
+				li.innerHTML = 'No Files Selected';
+				ul.appendChild(li);
+			}
+		}
+	</script>
+  </body>
+</html>

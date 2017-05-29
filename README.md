@@ -6,6 +6,5 @@ This is a program to help generate bills (Accounts and Amounts) from multiple KP
 
 **Ouptut:** bills.csv file that with Accounts and Amounts
 
-###Getting Started
-**Export Flask app:** `export FLASK_APP=bills.py`
-**Run Flask app:** `flask run`
+###Running Application
+**Run:** `python bills.py`

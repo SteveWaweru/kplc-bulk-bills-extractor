@@ -48,3 +48,7 @@ def hello_world():
         response.headers['Content-Disposition'] = 'attachment; filename=Bills.csv; charset=utf-16'
         return response
     return render_template('index.html')
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')

@@ -29,19 +29,17 @@ def hello_world():
             data.truncate(0)
             f = request.files.getlist('filesToUpload')
             for bill in f:
-                account = bill.filename.split('&')[0]
+                account = bill.filename.split('.')[0][5:]
                 bill.save(os.path.join(uploads_dir, bill.filename))
                 content = textract.process(os.path.join(uploads_dir, bill.filename), method='pdfminer')
-                # print content
                 # TODO: Using Regex to extract the data
-                c1 = content.split('The monthly bill is KSh')[1]
-                c2 = c1.split('v2.01')[0]
+                amount = content.split('\n')[0][4:]
                 # data.append([account, c2[5:]])
-                writer.writerow((account, c2[5:]))
+                writer.writerow((account, amount))
                 yield data.getvalue()
                 data.seek(0)
                 data.truncate(0)
-                print account, c2[5:]
+                print account, amount
             shutil.rmtree(uploads_dir)
         # stream the response as the data is generated
         response = Response(stream_with_context(generate()), mimetype='text/csv')
